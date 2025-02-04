@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Camera fpsCamera;
 
-    [SerializeField] float moveSpeed = 10;
+    [SerializeField] float moveSpeed = 9;
     [SerializeField] float runMultiplier = 1.5f;
     [SerializeField] float jumpForce = 5;
     [SerializeField] float gravity = 10;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
                 isSprinting = true;
                 moveSpeed *= runMultiplier;
             }
-            if (Input.GetButtonUp("Sprint") && moveSpeed > 8)
+            if (Input.GetButtonUp("Sprint") && moveSpeed > 9)
             {
                 isSprinting = false;
                 moveSpeed /= runMultiplier;
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentStamina = 0;
                 isSprinting = false;
-                moveSpeed = 8;
+                moveSpeed = 9;
                 StartCoroutine(StaminaRegenTimer());
             }
             if (currentStamina > maxStamina)
@@ -104,5 +104,17 @@ public class PlayerMovement : MonoBehaviour
         currentStamina += staminaRegen * Time.deltaTime;
         yield return new WaitForSeconds(1);
         canSprint = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Ammo")
+        {
+            if (GameObject.FindFirstObjectByType<PlayerShooting>().ammo != 6)
+            {
+                Destroy(other.gameObject);
+                GameObject.FindFirstObjectByType<PlayerShooting>().ammo += 3;
+            }
+        }
     }
 }
