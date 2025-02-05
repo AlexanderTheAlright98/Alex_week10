@@ -57,12 +57,11 @@ public class PlayerShooting : MonoBehaviour
                     _lr.SetPosition(1, hit.point);
 
                     //Deals with hitting an enemy
-                    ShootableBox targetBox = hit.transform.GetComponent<ShootableBox>();
-                    if (targetBox != null)
+                    EnemyController ragdollSwitcher = hit.collider.GetComponent<EnemyController>();
+                    if (ragdollSwitcher != null)
                     {
-                        targetBox.Damage(gunDamage);
+                        ragdollSwitcher.ragdollTrigger();
                     }
-
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.AddForce(-hit.normal * hitForce, ForceMode.Impulse);
