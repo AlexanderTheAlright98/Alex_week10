@@ -5,7 +5,6 @@ using TMPro;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Weapon Settings")]
-    [SerializeField] int gunDamage = 1;
     [SerializeField] float fireRate = 0.25f;
     [SerializeField] float range = 25;
     [SerializeField] float hitForce = 20;
@@ -41,7 +40,7 @@ public class PlayerShooting : MonoBehaviour
             ammo = 6;
         }
         #region Shooting
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !GameObject.FindFirstObjectByType<PlayerController>().isGameOver)
         {
             if (ammo > 0 && Time.time > nextFire)
             {
@@ -69,7 +68,7 @@ public class PlayerShooting : MonoBehaviour
                 }
                 else
                 {
-                    _lr.SetPosition(1, gunEnd.transform.forward * 100000);
+                    _lr.SetPosition(1, gunEnd.transform.forward * 1000000);
                 }
             }
             else if (ammo <= 0)

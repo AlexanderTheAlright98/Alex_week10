@@ -1,7 +1,9 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Camera fpsCamera;
 
@@ -21,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float staminaRegen = 10;
     [SerializeField] bool isSprinting = false;
     [SerializeField] bool canSprint = true;
+
+    [SerializeField] int playerHealth = 100;
+    public TMP_Text healthText;
+    public bool isGameOver = false;
+    public Renderer gunRend;
     
     CharacterController controller;
 
@@ -31,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         fpsCamera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -94,6 +102,30 @@ public class PlayerMovement : MonoBehaviour
         }
         controller.Move(moveDirection * moveSpeed * Time.deltaTime);
         #endregion
+
+        #region Health
+        healthText.text = playerHealth.ToString();
+        if (playerHealth > 100)
+        {
+            playerHealth = 100;
+        }
+        if (playerHealth <= 0)
+        {
+            playerHealth = 0;
+            GameOver();
+        }
+        #endregion
+    }
+    void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0;
+        gunRend.enabled = false;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 
     IEnumerator StaminaRegenTimer()
@@ -115,6 +147,18 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(other.gameObject);
                 GameObject.FindFirstObjectByType<PlayerShooting>().ammo += 3;
             }
+        }
+        if (other.tag == "Health")
+        {
+            if (playerHealth != 100)
+            {
+                Destroy(other.gameObject);
+                playerHealth += 5;
+            }
+        }
+        if (other.tag == "Enemy")
+        {
+            playerHealth -= GameObject.FindFirstObjectByType<EnemyController>().damage;
         }
     }
 }
