@@ -7,6 +7,9 @@ TagManager:
   - Ammo
   - Enemy
   - Health
+  - Crop1
+  - Crop2
+  - Mud
   layers:
   - Default
   - TransparentFX

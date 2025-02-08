@@ -75,8 +75,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  damage: 1
-  followDistance: 25
+  damage: 3
+  followDistance: 33
+  cratePrefabs:
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 1863641711879275118, guid: eb5a84fef857fc94b9e5581a7db8c8e6, type: 3}
 --- !u!195 &1434295651675695382
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -87,8 +93,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 10
+  m_Speed: 6
+  m_Acceleration: 9
   avoidancePriority: 50
   m_AngularSpeed: 180
   m_StoppingDistance: 0
@@ -187,8 +193,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.6037683, z: 1.9687027}
-  m_Center: {x: -0.0000096113, y: 1.7470617, z: 1.0316075}
+  m_Size: {x: 1, y: 2.0797122, z: 2.00522}
+  m_Center: {x: -0.000009623745, y: 1.5090984, z: 1.0498663}
 --- !u!1 &212679073169562177
 GameObject:
   m_ObjectHideFlags: 0

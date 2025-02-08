@@ -3749,9 +3749,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3061f94c6b9696a4eb46845af28c5011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  damage: 2
-  followDistance: 18
+  health: 2
+  damage: 6
+  followDistance: 28
+  cratePrefabs:
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 435970617568913895, guid: 712215d6c61b08c40a202158cf9d64a8, type: 3}
+  - {fileID: 1863641711879275118, guid: eb5a84fef857fc94b9e5581a7db8c8e6, type: 3}
+  - {fileID: 1863641711879275118, guid: eb5a84fef857fc94b9e5581a7db8c8e6, type: 3}
 --- !u!195 &5188074613654057817
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3762,7 +3770,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 4
   m_Acceleration: 7
   avoidancePriority: 50
   m_AngularSpeed: 180
@@ -3862,8 +3870,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.6037683, z: 1.9687027}
-  m_Center: {x: -0.0000096113, y: 1.7470617, z: 1.0316075}
+  m_Size: {x: 1, y: 1.9954492, z: 2.0887542}
+  m_Center: {x: -0.000009596561, y: 1.55122, z: 1.0916332}
 --- !u!1 &8007835481462713375
 GameObject:
   m_ObjectHideFlags: 0

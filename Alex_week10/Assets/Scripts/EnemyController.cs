@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     Animator anim;
     Collider runBox;
 
+    public GameObject[] cratePrefabs;
+
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -71,10 +73,19 @@ public class EnemyController : MonoBehaviour
     }
     IEnumerator EnemyKilled()
     {
+        GameObject.FindFirstObjectByType<SpawnManager>().enemyCount--;
         runBox.enabled = false;
         _agent.enabled = false;
         anim.enabled = false;
-        yield return new WaitForSeconds(5);
+        GameObject.FindFirstObjectByType<PlayerController>().score++;
+        yield return new WaitForSeconds(2);
+        int dropOdds = Random.Range(1,6);
+        if (dropOdds < 4)
+        {
+            int randomIndex2 = Random.Range(0, cratePrefabs.Length);
+            Instantiate(cratePrefabs[randomIndex2], new Vector3(transform.position.x, 0.66f, transform.position.z), Quaternion.identity);
+        }
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }

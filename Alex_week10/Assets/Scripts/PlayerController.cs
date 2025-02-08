@@ -26,7 +26,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int playerHealth = 100;
     public TMP_Text healthText;
+    public GameObject lowHealthHUD, crosshair;
+
     public bool isGameOver = false;
+    public GameObject gameOverHUD;
+    public TMP_Text enemiesKilled;
+    public int score;
     public Renderer gunRend;
     
     CharacterController controller;
@@ -39,6 +44,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        score = 0;
+        lowHealthHUD.SetActive(false);
+        healthText.enabled = true;
+        crosshair.SetActive(true);
     }
 
     // Update is called once per frame
@@ -114,6 +123,15 @@ public class PlayerController : MonoBehaviour
             playerHealth = 0;
             GameOver();
         }
+
+        if (playerHealth <= 20)
+        {
+            lowHealthHUD.SetActive(true);
+        }
+        else if (playerHealth > 20)
+        {
+            lowHealthHUD.SetActive(false);
+        }
         #endregion
     }
     void GameOver()
@@ -121,9 +139,14 @@ public class PlayerController : MonoBehaviour
         isGameOver = true;
         Time.timeScale = 0;
         gunRend.enabled = false;
+        GameObject.FindFirstObjectByType<PlayerShooting>().ammoText.enabled = false;
+        crosshair.SetActive(false);
+        healthText.enabled = false;
+        gameOverHUD.SetActive(true);
+        enemiesKilled.text = "YOU KILLED " + score + " ENEMIES!";
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
     }
@@ -153,7 +176,7 @@ public class PlayerController : MonoBehaviour
             if (playerHealth != 100)
             {
                 Destroy(other.gameObject);
-                playerHealth += 5;
+                playerHealth += Random.Range(2,5);
             }
         }
         if (other.tag == "Enemy")

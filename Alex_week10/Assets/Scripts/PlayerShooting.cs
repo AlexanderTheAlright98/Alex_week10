@@ -20,7 +20,7 @@ public class PlayerShooting : MonoBehaviour
     LineRenderer _lr;
 
     [Header("Ammo")]
-    public int ammo = 6;
+    public int ammo;
     public TMP_Text ammoText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
         _as = GetComponent<AudioSource>();
         _lr = GetComponent<LineRenderer>();
         playerCam = Camera.main;
+        ammoText.enabled = true;
     }
 
     // Update is called once per frame
